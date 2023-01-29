@@ -14,12 +14,14 @@ namespace EmployeesMiniApp.ConsoleUI
                 );
 
             string command;
+            string result;
             Console.WriteLine("Enter \"help\" for a list of commands\n");
             while (true )
             {
                 command = Console.ReadLine();
-                Console.WriteLine(commandExecuter.ExecuteCommand(command));
-                if (command == "Program finished")
+                result = commandExecuter.ExecuteCommand(command);
+                Console.WriteLine(result);
+                if (result == "Program finished")
                 {
                     return;
                 }
