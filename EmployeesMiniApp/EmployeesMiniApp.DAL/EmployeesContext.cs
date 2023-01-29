@@ -11,14 +11,9 @@ namespace EmployeesMiniApp.DAL
     {
         public DbSet<Employee> Employees { get; set; }
 
-        public EmployeesContext()
+        public EmployeesContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Employees;Trusted_Connection=True;");
         }
     }
 }

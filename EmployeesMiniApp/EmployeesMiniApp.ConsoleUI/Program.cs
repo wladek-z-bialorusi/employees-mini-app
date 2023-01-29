@@ -1,4 +1,6 @@
 ﻿using EmployeesMiniApp.DAL;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace EmployeesMiniApp.ConsoleUI
 {
@@ -6,10 +8,18 @@ namespace EmployeesMiniApp.ConsoleUI
     {
         static void Main(string[] args)
         {
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            builder.AddJsonFile("appsettings.json");
+            var config = builder.Build();
+            string connectionString = config.GetConnectionString("DefaultConnection");
+            var optionsBuilder = new DbContextOptionsBuilder<EmployeesContext>();
+            var options = optionsBuilder.UseSqlServer(connectionString).Options;
+
             CommandExecuter commandExecuter = new CommandExecuter(
                 new EmployeesService(
                     new EmployeeRepository(
-                        new EmployeesContext())
+                        new EmployeesContext(options))
                     )
                 );
 
