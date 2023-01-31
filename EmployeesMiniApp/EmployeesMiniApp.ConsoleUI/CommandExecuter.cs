@@ -49,9 +49,9 @@ namespace EmployeesMiniApp.ConsoleUI
                     return "Failed: invalid command";
 
                 case "add":
-                    if (words.Length == 4)
+                    if (words.Length == 5)
                     {
-                        return Add(words[1], words[2], words[3]);
+                        return Add(words[1], words[2], words[3], words[4]);
                     }
 
                     return "Failed: invalid command";
@@ -100,11 +100,11 @@ namespace EmployeesMiniApp.ConsoleUI
             return toShow.ToString();
         }
 
-        private string Add(string firstName, string lastName, string salaryString)
+        private string Add(string firstName, string lastName, string salaryString, string yearOfBirthString)
         {
-            if (int.TryParse(salaryString, out int salary))
+            if (int.TryParse(salaryString, out int salary) && int.TryParse(yearOfBirthString, out int yearOfBirth))
             {
-                _employeesService.Add(new Employee() { FirstName = firstName, LastName = lastName, Salary = salary});
+                _employeesService.Add(new Employee() { FirstName = firstName, LastName = lastName, Salary = salary, YearOfBirth = yearOfBirth });
                 return "Employee added\n";
             }
 

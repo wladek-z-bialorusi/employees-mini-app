@@ -10,16 +10,20 @@
 
         public int Salary { get; set; }
 
+        public int YearOfBirth { get; set; }
+
         public override string ToString()
         {
             string id = Id.ToString();
             string firstName = FirstName.ToString();
             string lastName = LastName.ToString();
             string salary = Salary.ToString();
+            string yearOfBirth = YearOfBirth.ToString();
             return $"{id + new string(' ', 3 - id.Length)}|" +
                 $"{firstName + new string(' ', 20 - firstName.Length)}|" +
                 $"{lastName + new string(' ', 20 - lastName.Length)}|" +
-                $"{salary + new string(' ', 10 - salary.Length)}|";
+                $"{salary + new string(' ', 10 - salary.Length)}|" +
+                $"{yearOfBirth}|";
         }
     }
 }
